@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Elijah 💖</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container" id="nameScreen">
+    <h2>Hey you 😍</h2>
+    <p>What's your name?</p>
+    <input type="text" id="nameInput" placeholder="Type your name...">
+    <button onclick="checkName()">Continue</button>
+    <p class="error" id="errorMessage"></p>
+  </div>
+
+  <div class="container hidden" id="loveScreen">
+    <div class="heart"></div>
+    <h1>My love for you never ends, Elijah 💘</h1>
+    <p id="quote"></p>
+    <button onclick="generateQuote()">Another one</button>
+  </div>
+  <div id="discordProfile" class="hidden">
+    <div class="discord-profile">
+      <div class="top-section">
+        <img class="pfp" src="https://cdn.discordapp.com/avatars/1008785396815106048/c54a08c15bd9e6f191cbad16e3488439.webp?size=128" alt="Soap PFP">
+        <div class="user-info">
+          <h2>soap</h2>
+          <p class="tag">@personafan</p>
+          <p class="id">1008785396815106048</p>
+        </div>
+      </div>
+      <audio id="loveSong" src="song.mp3"></audio>
+  
+      <hr>
+  
+      <div class="info-grid">
+        <div class="label">Created:</div>
+        <div class="value">2022-08-15 17:13:00 (UTC) <span class="muted">(2 years ago)</span></div>
+
+  
+        <div class="label">Banner Color:</div>
+        <div class="value">
+          <span class="color-box" style="background-color: #000000;"></span> #000000
+        </div>
+  
+        <div class="label">Avatar Decoration SKU ID:</div>
+        <div class="value"><a href="#">1333866045236314327</a></div>
+  
+        <div class="label">Badges:</div>
+        <div class="value">
+          <span class="badge">🟣 HypeSquad House Bravery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+      
+  
+  <script>
+    document.getElementById("loveSong").play();
+
+    function checkName() {
+  const name = nameInput.value.trim().toLowerCase();
+  if (name === "elijah") {
+    nameScreen.classList.add("hidden");
+    loveScreen.classList.remove("hidden");
+    document.getElementById("discordProfile").classList.remove("hidden");
+    document.getElementById("loveSong").play(); 
+    generateQuote();
+  } else {
+    errorMessage.textContent = "Error Code: Forbidden 💔";
+  }
+}
+
+
+  const nameScreen = document.getElementById("nameScreen");
+  const loveScreen = document.getElementById("loveScreen");
+  const nameInput = document.getElementById("nameInput");
+  const errorMessage = document.getElementById("errorMessage");
+  const quoteDisplay = document.getElementById("quote");
+  const button = document.querySelector("#loveScreen button");
+
+  const quotes = [
+    "Every moment with you is a heartbeat I want to feel forever.",
+    "You're not just in my heart, you are my heart.",
+    "In a world of billions, you’re the only one I see.",
+    "With you, every ordinary moment becomes magical.",
+    "My love for you is like the stars — infinite and eternal.",
+    "You're the melody in my silence, the light in my dusk.",
+    "I don't need paradise because I found you, Elijah.",
+    "Forever isn’t long enough with you.",
+    "You're the reason love songs make sense.",
+    "I loved you yesterday, love you still, always have, always will."
+  ];
+
+  const buttonLabels = [
+    "Thank you! 💖",
+    "Do you really mean it? 😳",
+    "Aww stop, you’re making me blush ☺️",
+    "Another one 🥺👉👈",
+    "Okay last one... maybe 🫣",
+    "You really love me huh? 😘",
+    "Fine, here’s more 😍",
+    "Again?? You're obsessed 💅",
+    "More? You're cute ❤️",
+    "Endless love incoming 💌"
+  ];
+
+  let clickCount = 0;
+
+  function generateQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    quoteDisplay.textContent = quotes[randomIndex];
+
+    const label = buttonLabels[clickCount % buttonLabels.length];
+    button.textContent = label;
+
+    clickCount++;
+  }
+  </script>
+</body>
+</html>
